@@ -239,6 +239,14 @@
   }
   .project-body{display:grid; grid-template-columns:1fr; gap:30px;}
   @media(min-width:900px){.project-body{grid-template-columns:1.3fr .9fr;}}
+  .project-col.full{grid-column:1/-1;}
+  .inline-stat{
+    display:inline-flex; align-items:baseline; gap:10px; margin:6px 0 26px;
+    padding:12px 20px; border-radius:999px; background:var(--card); border:1px solid var(--line);
+  }
+  .inline-stat-val{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:24px; color:var(--ink);}
+  .inline-stat-val .plus{color:var(--accent);}
+  .inline-stat-label{font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em;}
   .project-col h4{
     font-family:'Space Grotesk',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:.08em;
     color:var(--accent); margin-bottom:8px; margin-top:20px;
@@ -606,9 +614,13 @@
           <div class="pill-row"><span class="pill">Modern Trade</span><span class="pill">POSM</span><span class="pill">Sampling</span></div>
         </div>
         <div class="project-body">
-          <div class="project-col">
+          <div class="project-col full">
             <h4>A — Trade Marketing kênh MT (Trí Việt Phát Foods)</h4>
             <p>Quản trị 3 nhãn hàng với ~30 SKU trên Modern Trade: activation, khuyến mãi, POSM &amp; trưng bày, sampling, phân tích đối thủ, báo cáo doanh số.</p>
+            <div class="inline-stat">
+              <span class="inline-stat-val"><span class="plus">+</span><span data-count="22">0</span>%</span>
+              <span class="inline-stat-label">Sell-out toàn kênh MT</span>
+            </div>
             <div class="mini-cases">
               <div class="mini-case">
                 <b>Má Bảy × Emart</b>
@@ -642,9 +654,6 @@
               <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="12.5" data-decimals="1">0</span>%</div><div class="desc">Doanh thu cụm (Q1/2026)</div></div>
               <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="20">0</span>%</div><div class="desc">AOV</div></div>
             </div>
-          </div>
-          <div class="project-stats">
-            <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="22">0</span>%</div><div class="desc">Sell-out</div></div>
           </div>
         </div>
       </article>
