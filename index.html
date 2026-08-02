@@ -161,6 +161,14 @@
   .pillar .icon svg{width:26px; height:26px;}
   .pillar h3{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:20px; text-transform:uppercase; margin-bottom:12px;}
   .pillar p{color:var(--ink-soft); font-size:15px;}
+  .pillar-list{list-style:none; display:flex; flex-direction:column; gap:10px;}
+  .pillar-list li{
+    position:relative; padding-left:16px; color:var(--ink-soft); font-size:14.5px; line-height:1.45;
+  }
+  .pillar-list li::before{
+    content:''; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%; background:var(--accent);
+  }
+  .pillar-list li strong{color:var(--ink);}
   .pillar .num{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:13px; color:var(--accent); margin-bottom:10px; display:block;}
 
   /* ABOUT */
@@ -356,7 +364,12 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
           </div>
           <h3>Vận hành</h3>
-          <p>Quản trị P&amp;L toàn diện, đưa cửa hàng đang lỗ liên tục về doanh thu gộp <strong>+21%</strong>, EBITDA cải thiện từ -14,8% lên -7,8%.</p>
+          <ul class="pillar-list">
+            <li>Quản trị hoạt động toàn diện tại cửa hàng, điểm bán.</li>
+            <li>P&amp;L Management — Tối ưu hóa chi phí vận hành.</li>
+            <li>Tuân thủ SOP, nghiên cứu các điểm nghẽn và đề xuất "tháo gỡ nút thắt".</li>
+            <li>Sale-Driven — Doanh thu gộp <strong>+21%</strong>, EBITDA cải thiện từ -14,8% lên -7,8%.</li>
+          </ul>
         </div>
         <div class="pillar" data-reveal>
           <span class="num">02</span>
@@ -364,7 +377,11 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
           </div>
           <h3>Trade Marketing</h3>
-          <p>Triển khai activation cho 3 nhãn hàng, ~30 SKU tại kênh Modern Trade — thúc đẩy Sell-out <strong>+22%</strong>.</p>
+          <ul class="pillar-list">
+            <li>Quản lý 3 brand và danh mục sản phẩm hơn 30 SKUs.</li>
+            <li>Triển khai hoạt động tại các kênh MT: Co.op Mart/Extra, Winmart, Emart, Lotte Mart, GO!,...</li>
+            <li>Quản trị POSM, thực thi khuyến mãi thúc đẩy sell-out <strong>~22%</strong>.</li>
+          </ul>
         </div>
         <div class="pillar" data-reveal>
           <span class="num">03</span>
@@ -372,7 +389,11 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
           </div>
           <h3>Data Analytics</h3>
-          <p>Xây dựng hệ thống dashboard Power BI theo dõi <strong>16–18 cửa hàng</strong> theo thời gian thực, chuẩn hóa dữ liệu vận hành.</p>
+          <ul class="pillar-list">
+            <li>Xây dựng hệ thống dashboard Power BI theo dõi hoạt động chi tiết của khu vực.</li>
+            <li>Các chỉ số theo dõi: P&amp;L, Rev, Traffic, AOV, Conversion rate, Redeemption.</li>
+            <li>Với khu vực khoảng <strong>16–18 cửa hàng</strong> (tùy thời điểm).</li>
+          </ul>
         </div>
       </div>
     </div>
