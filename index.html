@@ -137,9 +137,14 @@
   .marquee-track span::after{content:'✦'; color:var(--accent); font-size:12px;}
   @keyframes scroll-left{from{transform:translateX(0);} to{transform:translateX(-50%);}}
 
-  section{padding:110px 0;}
-  @media(max-width:760px){section{padding:64px 0;} .wrap{padding:0 20px;}}
-  .section-head{margin-bottom:56px; max-width:640px;}
+  section{padding:80px 0;}
+  @media(max-width:760px){section{padding:56px 0;} .wrap{padding:0 20px;}}
+  .section-head{margin-bottom:40px; max-width:640px;}
+  .sub-label{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--accent); margin:36px 0 18px;
+  }
+  .sub-label:first-of-type{margin-top:0;}
   .section-head h2{font-size:clamp(34px,5vw,58px); text-transform:uppercase;}
   .section-head p{color:var(--ink-soft); margin-top:14px; font-size:16px;}
 
@@ -202,8 +207,12 @@
   /* EXPERIENCE */
   .timeline{border-top:1px solid var(--line);}
   .tl-item{
-    display:grid; grid-template-columns:1fr; gap:12px; padding:34px 0; border-bottom:1px solid var(--line);
+    display:grid; grid-template-columns:1fr; gap:12px; padding:34px 22px; margin:0 -22px;
+    border-bottom:1px solid var(--line); border-radius:14px;
+    transition:background .3s ease, transform .3s ease;
   }
+  .tl-item:hover{background:var(--card); transform:translateX(6px);}
+  .tl-item:hover .tl-date{color:var(--ink);}
   @media(min-width:800px){.tl-item{grid-template-columns:220px 1fr;}}
   .tl-date{font-family:'Space Grotesk',sans-serif; font-weight:600; color:var(--accent); font-size:14px;}
   .tl-role{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:clamp(20px,2.6vw,28px); text-transform:uppercase; margin-bottom:4px;}
@@ -211,8 +220,9 @@
   .tags{display:flex; flex-wrap:wrap; gap:8px;}
   .tag{
     font-size:12.5px; padding:6px 12px; border-radius:999px; border:1px solid var(--line);
-    color:var(--ink-soft); background:var(--card);
+    color:var(--ink-soft); background:var(--card); transition:transform .25s ease, border-color .25s ease, color .25s ease;
   }
+  .tag:hover{transform:translateY(-3px); border-color:var(--accent); color:var(--ink);}
 
   /* PROJECTS */
   .project{
@@ -247,9 +257,45 @@
   .bars.in i{transform:scaleY(1);}
   .bars i.hi{background:var(--accent);}
   .mini-cases{display:grid; grid-template-columns:1fr; gap:16px; margin-top:8px;}
-  @media(min-width:700px){.mini-cases{grid-template-columns:repeat(3,1fr);}}
+  @media(min-width:700px){.mini-cases{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));}}
   .mini-case{border:1px solid var(--line); border-radius:12px; padding:16px; background:var(--bg);}
   .mini-case b{font-family:'Space Grotesk',sans-serif; font-size:13.5px; text-transform:uppercase; display:block; margin-bottom:6px; color:var(--ink);}
+
+  /* DASHBOARD GALLERY */
+  .dash-gallery{grid-column:1/-1; margin-top:10px; padding-top:24px; border-top:1px solid var(--line);}
+  .dash-gallery-label{font-size:12.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;}
+  .dash-gallery-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
+  .dash-thumb{
+    position:relative; border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    padding:0; cursor:zoom-in; background:var(--bg); display:block; width:100%;
+  }
+  .dash-thumb img{width:100%; display:block; transition:transform .4s ease;}
+  .dash-thumb:hover img{transform:scale(1.03);}
+  .dash-thumb-zoom{
+    position:absolute; right:10px; bottom:10px; display:inline-flex; align-items:center; gap:6px;
+    background:rgba(21,20,15,.78); color:#fff; font-family:'Space Grotesk',sans-serif; font-size:12px;
+    padding:7px 13px; border-radius:999px; opacity:0; transition:opacity .25s;
+  }
+  .dash-thumb:hover .dash-thumb-zoom{opacity:1;}
+
+  .mini-photos{display:flex; gap:8px; margin-top:12px;}
+  .mini-thumb{width:56px; height:56px; flex-shrink:0; border-radius:8px; cursor:zoom-in;}
+  .mini-thumb img{width:100%; height:100%; object-fit:cover;}
+  .mini-thumb:hover{border-color:var(--accent);}
+  .mini-thumb:hover img{transform:scale(1.08);}
+  .b-proof{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:16px;}
+
+  .lightbox{
+    position:fixed; inset:0; background:rgba(15,14,10,.94); z-index:200;
+    display:flex; align-items:center; justify-content:center; padding:50px 30px;
+    opacity:0; pointer-events:none; transition:opacity .3s ease;
+  }
+  .lightbox.open{opacity:1; pointer-events:auto;}
+  .lightbox img{max-width:100%; max-height:100%; border-radius:8px; box-shadow:0 30px 80px rgba(0,0,0,.5);}
+  .lightbox-close{
+    position:absolute; top:22px; right:26px; background:rgba(255,255,255,.1); border:none; color:#fff;
+    cursor:pointer; padding:10px; border-radius:50%; display:flex;
+  }
   .mini-case p{font-size:13px; color:var(--ink-soft);}
 
   /* SKILLS */
@@ -273,14 +319,32 @@
   .cert-list span{color:var(--ink-soft); font-size:13px;}
 
   /* CONTACT */
-  .contact{background:var(--ink); color:var(--bg); border-radius:28px; margin:0 24px; padding:80px 40px; text-align:center;}
+  .contact{
+    position:relative; overflow:hidden;
+    background:var(--ink); color:var(--bg); border-radius:28px; margin:0 24px; padding:80px 40px; text-align:center;
+  }
+  .contact::before{
+    content:''; position:absolute; top:-260px; left:50%; transform:translateX(-50%);
+    width:640px; height:520px; background:radial-gradient(circle, rgba(228,67,40,.28), transparent 70%);
+    pointer-events:none;
+  }
+  .contact > *{position:relative; z-index:1;}
   .contact h2{font-size:clamp(38px,7vw,90px); text-transform:uppercase; margin-bottom:20px;}
   .contact h2 span{color:var(--accent);}
   .contact p{color:#C9C6BB; max-width:480px; margin:0 auto 34px;}
-  .contact-links{display:flex; flex-wrap:wrap; justify-content:center; gap:14px;}
-  .contact .btn{border-color:var(--bg); color:var(--bg);}
-  .contact .btn.solid{background:var(--accent); border-color:var(--accent); color:#fff;}
-  .contact .btn:hover{background:var(--bg); color:var(--ink);}
+  .contact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; max-width:760px; margin:0 auto;}
+  .contact-card{
+    display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center;
+    padding:30px 20px; border:1px solid rgba(255,255,255,.16); border-radius:16px;
+    background:rgba(255,255,255,.04); transition:transform .3s ease, border-color .3s ease, background .3s ease;
+  }
+  .contact-card:hover{transform:translateY(-6px); border-color:var(--accent); background:rgba(255,255,255,.08);}
+  .cc-icon{
+    width:44px; height:44px; border-radius:50%; background:var(--accent); color:#fff; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cc-label{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:#a8a59c;}
+  .cc-value{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14.5px; word-break:break-word; color:var(--bg);}
 
   footer{padding:40px 24px 30px;}
   .foot-bar{
@@ -303,7 +367,7 @@
       <a href="#about">Giới thiệu</a>
       <a href="#experience">Kinh nghiệm</a>
       <a href="#projects">Dự án</a>
-      <a href="#skills">Kỹ năng</a>
+      <a href="#skills">Học vấn &amp; Kỹ năng</a>
       <a href="#contact">Liên hệ</a>
     </nav>
     <a href="#contact" class="btn solid nav-cta">Liên hệ ngay</a>
@@ -318,7 +382,7 @@
   <a href="#about">Giới thiệu</a>
   <a href="#experience">Kinh nghiệm</a>
   <a href="#projects">Dự án</a>
-  <a href="#skills">Kỹ năng</a>
+  <a href="#skills">Học vấn &amp; Kỹ năng</a>
   <a href="#contact">Liên hệ</a>
 </div>
 
@@ -511,6 +575,25 @@
               <div class="desc" style="margin-top:8px;">Revenue · Traffic · AOV · Redemption</div>
             </div>
           </div>
+          <div class="dash-gallery">
+            <p class="dash-gallery-label">Dashboard Power BI thực tế — đã ẩn tên riêng &amp; số liệu doanh thu, chỉ giữ lại chỉ số %</p>
+            <div class="dash-gallery-grid">
+              <button class="dash-thumb" data-full="assets/dashboard-operations-overview.png">
+                <img src="assets/dashboard-operations-overview.png" alt="Power BI — Group Operations Overview dashboard, đã ẩn số liệu">
+                <span class="dash-thumb-zoom">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                  Xem full
+                </span>
+              </button>
+              <button class="dash-thumb" data-full="assets/dashboard-pnl-review.png">
+                <img src="assets/dashboard-pnl-review.png" alt="Power BI — Group P&amp;L Review dashboard, đã ẩn số liệu">
+                <span class="dash-thumb-zoom">
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                  Xem full
+                </span>
+              </button>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -527,17 +610,41 @@
             <h4>A — Trade Marketing kênh MT (Trí Việt Phát Foods)</h4>
             <p>Quản trị 3 nhãn hàng với ~30 SKU trên Modern Trade: activation, khuyến mãi, POSM &amp; trưng bày, sampling, phân tích đối thủ, báo cáo doanh số.</p>
             <div class="mini-cases">
-              <div class="mini-case"><b>Má Bảy × Emart</b><p>"Mua hàng đủ giá trị hóa đơn" — tặng quà theo bậc 99K / 139K / 199K, triển khai 12 ngày, PG tại kệ &amp; booth ngoài.</p></div>
+              <div class="mini-case">
+                <b>Má Bảy × Emart</b>
+                <p>"Mua hàng đủ giá trị hóa đơn" — tặng quà theo bậc 59K (chén Nhật cao cấp) / 99K (thau rổ Inochi) / 129K (chảo chống dính), triển khai tại Emart Phan Văn Trị, PG tại kệ &amp; booth ngoài.</p>
+                <div class="mini-photos">
+                  <button class="dash-thumb mini-thumb" data-full="assets/campaign/mabay-emart-poster.jpg"><img loading="lazy" src="assets/campaign/mabay-emart-poster.jpg" alt="Áp phích chương trình Má Bảy x Emart"></button>
+                  <button class="dash-thumb mini-thumb" data-full="assets/campaign/mabay-prep-table.jpg"><img loading="lazy" src="assets/campaign/mabay-prep-table.jpg" alt="Chuẩn bị sampling Má Bảy tại Emart"></button>
+                  <button class="dash-thumb mini-thumb" data-full="assets/campaign/mabay-posm-standee.jpg"><img loading="lazy" src="assets/campaign/mabay-posm-standee.jpg" alt="POSM standee Má Bảy trưng bày tại Emart"></button>
+                </div>
+              </div>
               <div class="mini-case"><b>WIL × Emart</b><p>Sampling + cơ chế Mua 1 Tặng 1 (gift box mini) — thúc đẩy dùng thử, chuyển đổi trực tiếp sang doanh số.</p></div>
               <div class="mini-case"><b>GUNGON × Co.op</b><p>Chiến dịch dùng thử đồng loạt tại 10 điểm bán Co.op Mart &amp; Co.op Extra, đảm bảo trưng bày &amp; thông điệp nhất quán.</p></div>
+              <div class="mini-case">
+                <b>WIL Tour × Trường ĐH</b>
+                <p>Roadshow tại các trường ĐH khu vực TP.HCM — mini-game, đổi quà, trải nghiệm sản phẩm tại booth "WIL Cho Hết Quíu" nhằm tăng awareness với nhóm khách hàng học sinh, sinh viên.</p>
+                <div class="mini-photos">
+                  <button class="dash-thumb mini-thumb" data-full="assets/campaign/wiltour-booth-crowd.jpg"><img loading="lazy" src="assets/campaign/wiltour-booth-crowd.jpg" alt="Booth WIL Tour thu hút sinh viên tại trường ĐH"></button>
+                  <button class="dash-thumb mini-thumb" data-full="assets/campaign/wiltour-pg-interaction.jpg"><img loading="lazy" src="assets/campaign/wiltour-pg-interaction.jpg" alt="Tương tác đổi quà tại booth WIL Tour"></button>
+                  <button class="dash-thumb mini-thumb" data-full="assets/campaign/wiltour-team-photo.jpg"><img loading="lazy" src="assets/campaign/wiltour-team-photo.jpg" alt="Đội ngũ triển khai chương trình WIL Cho Hết Quíu"></button>
+                </div>
+              </div>
             </div>
             <h4>B — Local Store Marketing cấp cụm (Highlands Coffee, 16 cửa hàng)</h4>
-            <p>Đóng góp, xây dựng in-store marketing proposal theo đặc thù từng địa bàn, triển khai đồng loạt dựa trên dữ liệu benchmark từ dashboard dự án 01.</p>
+            <p>Đóng góp, xây dựng in-store marketing proposal theo đặc thù từng địa bàn, triển khai đồng loạt dựa trên dữ liệu benchmark từ dashboard dự án 01. Đề xuất 3 CTKM tăng giá trị &amp; tần suất mua hàng:</p>
+            <ul>
+              <li><strong>Free Topping</strong> khi mua nước size L — tăng giá trị mua thêm.</li>
+              <li><strong>Free Cake 29K</strong> khi hóa đơn đạt 139K — tăng giá trị mua thêm.</li>
+              <li><strong>Bounce-back</strong> — giảm 20% (tối đa 10K) khi quay lại trong vòng 2 tiếng — tăng tỉ lệ mua thêm của khách văn phòng, sinh viên ngồi làm việc tại cửa hàng.</li>
+            </ul>
+            <div class="b-proof">
+              <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="12.5" data-decimals="1">0</span>%</div><div class="desc">Doanh thu cụm (Q1/2026)</div></div>
+              <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="20">0</span>%</div><div class="desc">AOV</div></div>
+            </div>
           </div>
           <div class="project-stats">
             <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="22">0</span>%</div><div class="desc">Sell-out</div></div>
-            <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="12.5" data-decimals="1">0</span>%</div><div class="desc">Doanh thu cụm (Q1/2026)</div></div>
-            <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="20">0</span>%</div><div class="desc">AOV</div></div>
           </div>
         </div>
       </article>
@@ -575,9 +682,10 @@
   <section id="skills">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Bộ công cụ</p>
-        <h2>Kỹ năng &amp; Công cụ</h2>
+        <p class="eyebrow">Nền tảng</p>
+        <h2>Học vấn &amp; Kỹ năng</h2>
       </div>
+      <p class="sub-label" data-reveal>Bộ công cụ</p>
       <div class="tools" data-reveal>
         <div class="tool"><div class="ic">W</div><span>Word</span></div>
         <div class="tool"><div class="ic">X</div><span>Excel</span></div>
@@ -586,15 +694,7 @@
         <div class="tool"><div class="ic">G</div><span>Google Sheets</span></div>
         <div class="tool"><div class="ic">C</div><span>Canva</span></div>
       </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow">Nền tảng</p>
-        <h2>Học vấn &amp; Chứng chỉ</h2>
-      </div>
+      <p class="sub-label" data-reveal>Học vấn &amp; Chứng chỉ</p>
       <div class="edu-grid">
         <div class="edu-card" data-reveal>
           <h4>Học vấn</h4>
@@ -619,14 +719,33 @@
       <p class="eyebrow" style="color:var(--accent);">Sẵn sàng trao đổi</p>
       <h2>Cùng <span>kết nối</span> nhé</h2>
       <p>Đang tìm kiếm cơ hội ở vị trí Trade Marketing / Commercial Operations / Retail Operations. Rất mong được trao đổi thêm cùng bạn.</p>
-      <div class="contact-links">
-        <a class="btn solid" href="mailto:nguyenphucuong1104@gmail.com">nguyenphucuong1104@gmail.com</a>
-        <a class="btn" href="tel:0947830061">0947.830.061</a>
-        <a class="btn" href="https://www.linkedin.com/in/ngnphcng1104/" target="_blank" rel="noopener">LinkedIn</a>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:nguyenphucuong1104@gmail.com">
+          <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg></div>
+          <div class="cc-label">Email</div>
+          <div class="cc-value">nguyenphucuong1104@gmail.com</div>
+        </a>
+        <a class="contact-card" href="tel:0947830061">
+          <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+          <div class="cc-label">Điện thoại</div>
+          <div class="cc-value">0947.830.061</div>
+        </a>
+        <a class="contact-card" href="https://www.linkedin.com/in/ngnphcng1104/" target="_blank" rel="noopener">
+          <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+          <div class="cc-label">LinkedIn</div>
+          <div class="cc-value">Xem hồ sơ</div>
+        </a>
       </div>
     </div>
   </section>
 </main>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lightboxClose" aria-label="Đóng">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4l16 16M20 4L4 20"/></svg>
+  </button>
+  <img id="lightboxImg" src="" alt="">
+</div>
 
 <footer>
   <div class="foot-bar">
@@ -716,6 +835,22 @@
     });
   }, {threshold:.6});
   counters.forEach(c=>cIo.observe(c));
+
+  // dashboard lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxClose = document.getElementById('lightboxClose');
+  document.querySelectorAll('.dash-thumb').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      lightboxImg.src = btn.dataset.full;
+      lightboxImg.alt = btn.querySelector('img').alt;
+      lightbox.classList.add('open');
+    });
+  });
+  function closeLightbox(){ lightbox.classList.remove('open'); lightboxImg.src = ''; }
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
 </script>
 </body>
 </html>
