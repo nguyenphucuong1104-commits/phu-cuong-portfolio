@@ -79,8 +79,6 @@
     background:var(--accent); transition:width .25s ease;
   }
   nav.links a:hover::after, nav.links a.active::after{width:100%;}
-  .nav-cta{display:none;}
-  @media(min-width:860px){.nav-cta{display:inline-flex;}}
   .burger{display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
   .burger span{width:24px; height:2px; background:var(--ink);}
   @media(min-width:860px){.burger{display:none;}}
@@ -102,7 +100,7 @@
   }
   .hero .eyebrow{margin-bottom:18px;}
   .hero h1{
-    font-size:clamp(48px,10.5vw,132px);
+    font-size:clamp(40px,7.5vw,92px);
     text-transform:uppercase;
     line-height:1.25;
     display:flex; flex-wrap:wrap; gap:0 22px;
@@ -183,8 +181,9 @@
     background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:32px;
   }
   .intro-card .about-photo{max-width:150px; margin:0 auto 22px;}
+  .intro-card .about-photo .frame{aspect-ratio:1/1;}
   .intro-card .about-photo .badge{width:74px; height:74px; font-size:10px; bottom:-12px; right:-12px;}
-  .intro-card .about-copy h2{font-size:clamp(22px,2.6vw,28px); margin-bottom:12px;}
+  .intro-card .about-copy .eyebrow{margin-bottom:10px;}
   .intro-card .about-copy p{font-size:14.5px; margin-bottom:0;}
   .intro-card .goal{margin-top:16px; padding:14px 16px; font-size:13.5px;}
   .intro-card .stats{grid-template-columns:repeat(2,1fr); gap:14px; margin-top:22px;}
@@ -197,6 +196,7 @@
     filter:grayscale(.15) contrast(1.05);
     aspect-ratio:346/519; background:var(--bg-alt);
   }
+  .about-photo .frame img{width:100%; height:100%; object-fit:cover; object-position:top center;}
   .about-photo .badge{
     position:absolute; bottom:-18px; right:-18px; background:var(--accent); color:#fff;
     border-radius:50%; width:110px; height:110px; display:flex; align-items:center; justify-content:center;
@@ -390,7 +390,6 @@
       <a href="#skills">Học vấn &amp; Kỹ năng</a>
       <a href="#contact">Liên hệ</a>
     </nav>
-    <a href="#contact" class="btn solid nav-cta">Liên hệ ngay</a>
     <button class="burger" id="burgerBtn" aria-label="Mở menu"><span></span><span></span><span></span></button>
   </div>
 </header>
@@ -433,7 +432,6 @@
         </div>
         <div class="about-copy" data-reveal>
           <p class="eyebrow">Giới thiệu bản thân</p>
-          <h2>Từ cửa hàng lên bàn chiến lược</h2>
           <p>Mình là Phú Cường — gần 3 năm "lăn xả" trong ngành F&amp;B, từ nhân viên lên Store Manager của Highlands Coffee. Thế mạnh của mình nằm ở điểm giao giữa vận hành thương mại, dữ liệu và marketing: biến số liệu thành hành động, hành động thành kết quả đo đếm được.</p>
           <div class="goal">Đang tìm vị trí: <strong>Trade Marketing / Commercial Operations / Retail Operations</strong> tại văn phòng.</div>
           <div class="stats">
