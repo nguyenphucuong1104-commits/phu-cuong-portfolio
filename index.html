@@ -176,9 +176,21 @@
   .pillar-list li strong{color:var(--ink);}
   .pillar .num{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:13px; color:var(--accent); margin-bottom:10px; display:block;}
 
+  /* HERO + ABOUT (consolidated) */
+  .hero-grid{display:grid; grid-template-columns:1fr; gap:44px;}
+  @media(min-width:960px){.hero-grid{grid-template-columns:1.15fr .85fr; align-items:center;}}
+  .intro-card{
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:32px;
+  }
+  .intro-card .about-photo{max-width:150px; margin:0 auto 22px;}
+  .intro-card .about-photo .badge{width:74px; height:74px; font-size:10px; bottom:-12px; right:-12px;}
+  .intro-card .about-copy h2{font-size:clamp(22px,2.6vw,28px); margin-bottom:12px;}
+  .intro-card .about-copy p{font-size:14.5px; margin-bottom:0;}
+  .intro-card .goal{margin-top:16px; padding:14px 16px; font-size:13.5px;}
+  .intro-card .stats{grid-template-columns:repeat(2,1fr); gap:14px; margin-top:22px;}
+  .intro-card .stat .num{font-size:clamp(20px,2.4vw,26px);}
+
   /* ABOUT */
-  .about-grid{display:grid; grid-template-columns:1fr; gap:56px;}
-  @media(min-width:920px){.about-grid{grid-template-columns:.8fr 1.2fr; align-items:center;}}
   .about-photo{position:relative; max-width:360px; margin:0 auto;}
   .about-photo .frame{
     border-radius:var(--radius); overflow:hidden; border:1px solid var(--line);
@@ -396,20 +408,41 @@
 
 <main id="top">
   <section class="hero" id="heroSection">
-    <div class="wrap">
-      <p class="eyebrow">Portfolio 2026 · TP. Hồ Chí Minh</p>
-      <h1>
-        <span class="word"><span>NGUYỄN</span></span>
-        <span class="word"><span>PHÚ</span></span>
-        <span class="word accent"><span>CƯỜNG</span></span>
-      </h1>
-      <div class="hero-sub">
-        <p class="hero-tagline">Operations · Trade Marketing · Data Analytics</p>
-        <p class="hero-desc">Gần 3 năm "lăn xả" trong vận hành chuỗi F&amp;B tại Highlands Coffee — biến dữ liệu vận hành thành hành động thương mại, và hành động thành kết quả đo đếm được.</p>
+    <div class="wrap hero-grid">
+      <div class="hero-left">
+        <p class="eyebrow">Portfolio 2026 · TP. Hồ Chí Minh</p>
+        <h1>
+          <span class="word"><span>NGUYỄN</span></span>
+          <span class="word"><span>PHÚ</span></span>
+          <span class="word accent"><span>CƯỜNG</span></span>
+        </h1>
+        <div class="hero-sub">
+          <p class="hero-tagline">Operations · Trade Marketing · Data Analytics</p>
+          <p class="hero-desc">Gần 3 năm "lăn xả" trong vận hành chuỗi F&amp;B tại Highlands Coffee — biến dữ liệu vận hành thành hành động thương mại, và hành động thành kết quả đo đếm được.</p>
+        </div>
+        <div class="hero-cta">
+          <a href="#projects" class="btn solid">Xem dự án nổi bật</a>
+          <a href="#contact" class="btn accent">Liên hệ</a>
+        </div>
       </div>
-      <div class="hero-cta">
-        <a href="#projects" class="btn solid">Xem dự án nổi bật</a>
-        <a href="#contact" class="btn accent">Liên hệ</a>
+
+      <div class="intro-card" id="about">
+        <div class="about-photo" data-reveal>
+          <div class="frame"><img src="assets/profile.png" alt="Chân dung Nguyễn Phú Cường"></div>
+          <div class="badge">Store Manager<br>→ Office</div>
+        </div>
+        <div class="about-copy" data-reveal>
+          <p class="eyebrow">Giới thiệu bản thân</p>
+          <h2>Từ cửa hàng lên bàn chiến lược</h2>
+          <p>Mình là Phú Cường — gần 3 năm "lăn xả" trong ngành F&amp;B, từ nhân viên lên Store Manager của Highlands Coffee. Thế mạnh của mình nằm ở điểm giao giữa vận hành thương mại, dữ liệu và marketing: biến số liệu thành hành động, hành động thành kết quả đo đếm được.</p>
+          <div class="goal">Đang tìm vị trí: <strong>Trade Marketing / Commercial Operations / Retail Operations</strong> tại văn phòng.</div>
+          <div class="stats">
+            <div class="stat" data-reveal><div class="num" data-count="35" data-suffix="%">0</div><div class="label">Tăng doanh thu</div></div>
+            <div class="stat" data-reveal><div class="num"><span data-count="-14.8" data-decimals="1">0</span>→<span data-count="-7.8" data-decimals="1">0</span>%</div><div class="label">EBITDA cải thiện</div></div>
+            <div class="stat" data-reveal><div class="num" data-count="16">0</div><div class="label">Cửa hàng hỗ trợ</div></div>
+            <div class="stat" data-reveal><div class="num" data-count="22" data-suffix="%">0</div><div class="label">Sell-out tăng</div></div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="scroll-cue"><span class="dot"></span> Cuộn xuống</div>
@@ -466,28 +499,6 @@
             <li>Các chỉ số theo dõi: P&amp;L, Rev, Traffic, AOV, Conversion rate, Redeemption.</li>
             <li>Với khu vực khoảng <strong>16–18 cửa hàng</strong> (tùy thời điểm).</li>
           </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="about">
-    <div class="wrap about-grid">
-      <div class="about-photo" data-reveal>
-        <div class="frame"><img src="assets/profile.png" alt="Chân dung Nguyễn Phú Cường"></div>
-        <div class="badge">Store Manager<br>→ Office</div>
-      </div>
-      <div class="about-copy" data-reveal>
-        <p class="eyebrow">Giới thiệu bản thân</p>
-        <h2>Từ cửa hàng<br>lên bàn chiến lược</h2>
-        <p>Xin chào! Mình là Phú Cường — gần 3 năm "lăn xả" trong ngành F&amp;B, từ nhân viên lên Store Manager của Highlands Coffee, cùng trải nghiệm thực tập Trade Marketing.</p>
-        <p>Mình có thế mạnh ở điểm giao giữa vận hành thương mại, dữ liệu và marketing: biến những con số thu thập được thành hành động cụ thể, sau đó được tích góp từ hoạt động quản trị cửa hàng, hỗ trợ quản trị cấp khu vực và thực tập.</p>
-        <div class="goal">Hiện tại, mình đang tìm một vị trí: <strong>Trade Marketing / Commercial Operations / Retail Operations</strong> tại văn phòng — nơi mình mang trải nghiệm thực chiến từ cửa hàng lên bàn chiến lược, và biến hiểu biết vận hành thành tăng trưởng đo đếm được.</div>
-        <div class="stats">
-          <div class="stat" data-reveal><div class="num" data-count="35" data-suffix="%">0</div><div class="label">Tăng doanh thu</div></div>
-          <div class="stat" data-reveal><div class="num"><span data-count="-14.8" data-decimals="1">0</span>→<span data-count="-7.8" data-decimals="1">0</span>%</div><div class="label">EBITDA cải thiện</div></div>
-          <div class="stat" data-reveal><div class="num" data-count="16">0</div><div class="label">Cửa hàng hỗ trợ</div></div>
-          <div class="stat" data-reveal><div class="num" data-count="22" data-suffix="%">0</div><div class="label">Sell-out tăng</div></div>
         </div>
       </div>
     </div>
@@ -778,7 +789,7 @@
   window.addEventListener('scroll', ()=>{
     navEl.classList.toggle('scrolled', window.scrollY > 40);
     let current = '';
-    document.querySelectorAll('section[id]').forEach(sec=>{
+    document.querySelectorAll('section[id], #about').forEach(sec=>{
       const rect = sec.getBoundingClientRect();
       if(rect.top <= 120 && rect.bottom >= 120) current = sec.id;
     });
