@@ -239,7 +239,7 @@
   /* PROJECTS */
   .project{
     border:1px solid var(--line); border-radius:var(--radius); background:var(--card);
-    padding:40px; margin-bottom:26px; overflow:hidden;
+    padding:40px; margin-bottom:26px; overflow:hidden; scroll-margin-top:100px;
   }
   .project-head{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:20px; margin-bottom:26px;}
   .project-head .num{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:16px; color:var(--accent);}
@@ -427,7 +427,7 @@
 
       <div class="intro-card" id="about">
         <div class="about-photo" data-reveal>
-          <div class="frame"><img src="assets/profile.png" alt="Chân dung Nguyễn Phú Cường"></div>
+          <div class="frame"><img src="assets/Profile.jpg" alt="Chân dung Nguyễn Phú Cường"></div>
           <div class="badge">Store Manager<br>→ Office</div>
         </div>
         <div class="about-copy" data-reveal>
@@ -461,7 +461,7 @@
         <p>Điểm giao giữa vận hành thương mại, dữ liệu và marketing — mỗi năng lực đều gắn với kết quả thực tế đã tạo ra.</p>
       </div>
       <div class="pillars">
-        <div class="pillar" data-reveal>
+        <a class="pillar" href="#project-03" data-reveal>
           <span class="num">01</span>
           <div class="icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V9l7-5 7 5v12"/><path d="M9 21v-6h6v6"/></svg>
@@ -473,8 +473,8 @@
             <li>Tuân thủ SOP, nghiên cứu các điểm nghẽn và đề xuất "tháo gỡ nút thắt".</li>
             <li>Sale-Driven — Doanh thu gộp <strong>+21%</strong>, EBITDA cải thiện từ -14,8% lên -7,8%.</li>
           </ul>
-        </div>
-        <div class="pillar" data-reveal>
+        </a>
+        <a class="pillar" href="#project-02" data-reveal>
           <span class="num">02</span>
           <div class="icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
@@ -485,8 +485,8 @@
             <li>Triển khai hoạt động tại các kênh MT: Co.op Mart/Extra, Winmart, Emart, Lotte Mart, GO!,...</li>
             <li>Quản trị POSM, thực thi khuyến mãi thúc đẩy sell-out <strong>~22%</strong>.</li>
           </ul>
-        </div>
-        <div class="pillar" data-reveal>
+        </a>
+        <a class="pillar" href="#project-01" data-reveal>
           <span class="num">03</span>
           <div class="icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
@@ -497,7 +497,7 @@
             <li>Các chỉ số theo dõi: P&amp;L, Rev, Traffic, AOV, Conversion rate, Redeemption.</li>
             <li>Với khu vực khoảng <strong>16–18 cửa hàng</strong> (tùy thời điểm).</li>
           </ul>
-        </div>
+        </a>
       </div>
     </div>
   </section>
@@ -558,7 +558,7 @@
         <p>Ba dự án minh chứng năng lực xuyên suốt: thu thập &amp; phân tích dữ liệu, triển khai trade marketing tại điểm bán, và vận hành cửa hàng.</p>
       </div>
 
-      <article class="project" data-reveal>
+      <article class="project" id="project-01" data-reveal>
         <div class="project-head">
           <div>
             <span class="num">01 / Data Analytics · Operations</span>
@@ -614,7 +614,7 @@
         </div>
       </article>
 
-      <article class="project" data-reveal>
+      <article class="project" id="project-02" data-reveal>
         <div class="project-head">
           <div>
             <span class="num">02 / Trade Marketing</span>
@@ -667,7 +667,7 @@
         </div>
       </article>
 
-      <article class="project" data-reveal>
+      <article class="project" id="project-03" data-reveal>
         <div class="project-head">
           <div>
             <span class="num">03 / Operations</span>
