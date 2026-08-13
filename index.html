@@ -182,7 +182,6 @@
   }
   .intro-card .about-photo{max-width:150px; margin:0 auto 22px;}
   .intro-card .about-photo .frame{aspect-ratio:1/1;}
-  .intro-card .about-photo .badge{width:74px; height:74px; font-size:10px; bottom:-12px; right:-12px;}
   .intro-card .about-copy .eyebrow{margin-bottom:10px;}
   .intro-card .about-copy p{font-size:14.5px; margin-bottom:0;}
   .intro-card .goal{margin-top:16px; padding:14px 16px; font-size:13.5px;}
@@ -197,13 +196,6 @@
     aspect-ratio:346/519; background:var(--bg-alt);
   }
   .about-photo .frame img{width:100%; height:100%; object-fit:cover; object-position:top center;}
-  .about-photo .badge{
-    position:absolute; bottom:-18px; right:-18px; background:var(--accent); color:#fff;
-    border-radius:50%; width:110px; height:110px; display:flex; align-items:center; justify-content:center;
-    text-align:center; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:13px; line-height:1.25;
-    animation:spin 16s linear infinite; padding:10px;
-  }
-  @keyframes spin{from{transform:rotate(0);} to{transform:rotate(360deg);}}
   .about-copy h2{font-size:clamp(32px,4.6vw,52px); text-transform:uppercase; margin-bottom:20px;}
   .about-copy p{color:var(--ink-soft); font-size:16px; margin-bottom:14px;}
   .about-copy .goal{
@@ -376,9 +368,51 @@
 
   .sparkle{position:absolute; color:var(--accent); font-size:22px; animation:float 5s ease-in-out infinite;}
   @keyframes float{0%,100%{transform:translateY(0) rotate(0);} 50%{transform:translateY(-14px) rotate(15deg);}}
+  /* ===== ẨN SỐ LIỆU — hiệu ứng "đổ hạt" (Threads-style) =====
+     Bật mặc định bằng class .figs-hidden trên <body>.
+     Không có click-to-reveal. Muốn hiện: bỏ class figs-hidden (hoặc gọi showFigures() trong console). */
+  body.figs-hidden .stat .num,
+  body.figs-hidden .pstat .val,
+  body.figs-hidden .inline-stat-val,
+  body.figs-hidden .fig{
+    -webkit-user-select:none; user-select:none;
+    pointer-events:none;
+    cursor:default;
+  }
+  body.figs-hidden .stat .num{filter:blur(5px) url(#grainBig);}
+  body.figs-hidden .pstat .val{filter:blur(5px) url(#grainBig);}
+  body.figs-hidden .inline-stat-val{display:inline-block; filter:blur(5px) url(#grainMid);}
+  body.figs-hidden .fig{display:inline-block; filter:blur(3px) url(#grainFine);}
 </style>
 </head>
-<body>
+<body class="figs-hidden">
+<svg class="grain-defs" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden;">
+  <filter id="grainBig" x="-25%" y="-50%" width="150%" height="200%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.42" numOctaves="3" seed="3" result="n">
+      <animate attributeName="seed" values="3;11;19;27;35" dur="2.4s" calcMode="discrete" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="20" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feComposite in="d" in2="n" operator="arithmetic" k1="1.9" k2="0.75" k3="0" k4="-0.02" result="g"/>
+    <feGaussianBlur in="g" stdDeviation="0.4"/>
+  </filter>
+  <filter id="grainMid" x="-25%" y="-60%" width="150%" height="220%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="3" seed="5" result="n">
+      <animate attributeName="seed" values="5;13;21;29;37" dur="2.4s" calcMode="discrete" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="16" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feComposite in="d" in2="n" operator="arithmetic" k1="1.9" k2="0.75" k3="0" k4="-0.02" result="g"/>
+    <feGaussianBlur in="g" stdDeviation="0.35"/>
+  </filter>
+  <filter id="grainFine" x="-30%" y="-80%" width="160%" height="260%" color-interpolation-filters="sRGB">
+    <feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="2" seed="7" result="n">
+      <animate attributeName="seed" values="7;15;23;31;39" dur="2.4s" calcMode="discrete" repeatCount="indefinite"/>
+    </feTurbulence>
+    <feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G" result="d"/>
+    <feComposite in="d" in2="n" operator="arithmetic" k1="1.9" k2="0.75" k3="0" k4="-0.02" result="g"/>
+    <feGaussianBlur in="g" stdDeviation="0.3"/>
+  </filter>
+</svg>
+
 
 <header class="nav" id="siteNav">
   <div class="wrap nav-inner">
@@ -428,7 +462,6 @@
       <div class="intro-card" id="about">
         <div class="about-photo" data-reveal>
           <div class="frame"><img src="assets/Profile.jpg" alt="Chân dung Nguyễn Phú Cường"></div>
-          <div class="badge">Store Manager<br>→ Office</div>
         </div>
         <div class="about-copy" data-reveal>
           <p class="eyebrow">Giới thiệu bản thân</p>
@@ -471,7 +504,7 @@
             <li>Quản trị hoạt động toàn diện tại cửa hàng, điểm bán.</li>
             <li>P&amp;L Management — Tối ưu hóa chi phí vận hành.</li>
             <li>Tuân thủ SOP, nghiên cứu các điểm nghẽn và đề xuất "tháo gỡ nút thắt".</li>
-            <li>Sale-Driven — Doanh thu gộp <strong>+21%</strong>, EBITDA cải thiện từ -14,8% lên -7,8%.</li>
+            <li>Sale-Driven — Doanh thu gộp <strong class="fig">+21%</strong>, EBITDA cải thiện từ <span class="fig">-14,8%</span> lên <span class="fig">-7,8%</span>.</li>
           </ul>
         </a>
         <a class="pillar" href="#project-02" data-reveal>
@@ -483,7 +516,7 @@
           <ul class="pillar-list">
             <li>Quản lý 3 brand và danh mục sản phẩm hơn 30 SKUs.</li>
             <li>Triển khai hoạt động tại các kênh MT: Co.op Mart/Extra, Winmart, Emart, Lotte Mart, GO!,...</li>
-            <li>Quản trị POSM, thực thi khuyến mãi thúc đẩy sell-out <strong>~22%</strong>.</li>
+            <li>Quản trị POSM, thực thi khuyến mãi thúc đẩy sell-out <strong class="fig">~22%</strong>.</li>
           </ul>
         </a>
         <a class="pillar" href="#project-01" data-reveal>
@@ -689,8 +722,8 @@
           </div>
           <div class="project-stats">
             <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="21">0</span>%</div><div class="desc">Doanh thu gộp</div></div>
-            <div class="pstat"><div class="val">-14,8→-7,8%</div><div class="desc">EBITDA (+7,0 điểm %)</div></div>
-            <div class="pstat"><div class="val">-39,4→-28,3%</div><div class="desc">Store NOI (+11,1 điểm %)</div></div>
+            <div class="pstat"><div class="val">-14,8→-7,8%</div><div class="desc">EBITDA (<span class="fig">+7,0</span> điểm %)</div></div>
+            <div class="pstat"><div class="val">-39,4→-28,3%</div><div class="desc">Store NOI (<span class="fig">+11,1</span> điểm %)</div></div>
           </div>
         </div>
       </article>
@@ -869,6 +902,15 @@
   lightboxClose.addEventListener('click', closeLightbox);
   lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
   document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeLightbox(); });
+
+  /* ===== ẨN SỐ LIỆU — hiệu ứng đổ hạt =====
+     Mặc định BẬT (class figs-hidden trên <body>), không mở khi click.
+     showFigures() / hideFigures() dùng để bật tắt thủ công trong console. */
+  window.showFigures = ()=>document.body.classList.remove('figs-hidden');
+  window.hideFigures = ()=>document.body.classList.add('figs-hidden');
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.querySelectorAll('svg.grain-defs animate').forEach(a=>a.remove());
+  }
 </script>
 </body>
 </html>
