@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nguyễn Phú Cường — Portfolio | Operations · Trade Marketing · Data Analytics</title>
-<meta name="description" content="Portfolio của Nguyễn Phú Cường — Operations, Trade Marketing &amp; Data Analytics trong ngành F&amp;B/FMCG.">
+<title>Nguyễn Phú Cường — Portfolio | Trade Marketing · Operations · Data Analytics</title>
+<meta name="description" content="Portfolio của Nguyễn Phú Cường — Trade Marketing Executive tại Phê La, hơn 3 năm ngành F&amp;B (Highlands Coffee → Phê La): POSM, activation, NSO, campaign mùa và dữ liệu kinh doanh.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@800;900&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -96,8 +96,99 @@
   /* HERO */
   .hero{
     min-height:100svh; display:flex; flex-direction:column; justify-content:center;
-    padding-top:120px; padding-bottom:60px; position:relative;
+    padding-top:120px; padding-bottom:60px; position:relative; isolation:isolate;
   }
+  /* Pattern chìm: lưới dấu + mờ, trôi chậm; lớp màu cam chỉ hiện quanh con trỏ */
+  .hero::before, .hero::after{
+    content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    background-size:34px 34px;
+    animation:patternDrift 48s linear infinite;
+  }
+  .hero::before{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 13v8M13 17h8' stroke='%2315140F' stroke-width='1.3' stroke-linecap='round' opacity='.09'/%3E%3C/svg%3E");
+    -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 45%, #000 25%, transparent 85%);
+            mask-image:radial-gradient(ellipse 80% 70% at 50% 45%, #000 25%, transparent 85%);
+  }
+  .hero::after{
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 13v8M13 17h8' stroke='%23E44328' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
+    -webkit-mask-image:radial-gradient(circle 200px at var(--mx,72%) var(--my,40%), rgba(0,0,0,.75), transparent 80%);
+            mask-image:radial-gradient(circle 200px at var(--mx,72%) var(--my,40%), rgba(0,0,0,.75), transparent 80%);
+    opacity:0; transition:opacity .5s ease;
+  }
+  .hero.spot::after{opacity:1;}
+
+  /* HERO bố cục poster: tên trái · chân dung giữa · trích dẫn phải · chữ PORTFOLIO lớn dưới đáy */
+  .hero{display:block; padding:0; overflow:hidden; min-height:100svh;}
+  .hero .hero-layout{
+    position:relative; z-index:3;
+    display:grid; grid-template-columns:1fr; gap:28px;
+    padding-top:110px;
+  }
+  .hero .hero-left h1{font-size:clamp(42px,4.9vw,74px); line-height:1.12; gap:0 .28em;}
+  .hero .hero-left h1 .word{flex-shrink:0;}
+  .hero-tag{margin-top:18px;}
+  .hero-tag mark{
+    background:var(--accent); color:#fff; padding:.28em .7em; border-radius:4px;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(13px,1.05vw,15px);
+    letter-spacing:.02em; box-decoration-break:clone; -webkit-box-decoration-break:clone; line-height:2;
+  }
+  .hero-school{margin-top:12px; font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:15px; color:var(--ink);}
+  .hero-quote{position:relative; font-family:'Space Grotesk',sans-serif; color:var(--ink);}
+  .hero-quote .q-mark{
+    position:absolute; top:-.58em; right:-.06em; font-family:'Be Vietnam Pro',sans-serif; font-weight:900;
+    font-size:110px; line-height:1; color:var(--accent); opacity:.16; pointer-events:none;
+  }
+  .hero-quote .q-big{display:block; font-weight:700; font-size:clamp(22px,2.1vw,30px); line-height:1.15; letter-spacing:-.01em;}
+  .hero-quote .q-small{display:block; font-weight:500; font-size:15px; color:var(--ink-soft); margin:4px 0 12px;}
+  .hero-quote .q-small:last-child{margin-bottom:0;}
+  .hero-quote em{
+    font-style:normal; color:var(--accent);
+    background:linear-gradient(transparent 72%, rgba(228,67,40,.22) 72%, rgba(228,67,40,.22) 92%, transparent 92%);
+  }
+  .hero-quote mark{
+    background:var(--ink); color:var(--bg); padding:.08em .4em; border-radius:3px; font-weight:600;
+  }
+  .hero-right .hero-desc{margin-top:20px; padding-top:18px; border-top:1px solid var(--line); font-size:14.5px;}
+  .hero-right .hero-cta{margin-top:24px;}
+  .hero-stage{position:relative; height:66svh; min-height:380px; margin-top:24px; pointer-events:none;}
+  .hero-portrait{
+    position:absolute; bottom:0; left:50%; transform:translateX(-50%);
+    height:100%; width:auto; max-width:none; z-index:1;
+    filter:drop-shadow(0 24px 40px rgba(21,20,15,.18));
+    -webkit-mask-image:linear-gradient(#000,#000), linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+    -webkit-mask-size:100% 62%, 100% 100%; -webkit-mask-position:top, center; -webkit-mask-repeat:no-repeat;
+            mask-image:linear-gradient(#000,#000), linear-gradient(to right, transparent 0, #000 9%, #000 91%, transparent 100%);
+            mask-size:100% 62%, 100% 100%; mask-position:top, center; mask-repeat:no-repeat;
+  }
+  .hero-word{
+    position:absolute; left:0; right:0; bottom:-.08em; z-index:2; text-align:center; white-space:nowrap;
+    font-family:'Be Vietnam Pro',sans-serif; font-weight:900; line-height:.8; letter-spacing:-.015em;
+    font-size:clamp(56px,16.5vw,280px); color:var(--accent);
+    opacity:0; transform:translateY(40px); transition:opacity 1s ease .35s, transform 1s cubic-bezier(.16,1,.3,1) .35s;
+  }
+  .hero.loaded .hero-word{opacity:1; transform:none;}
+  @media(min-width:960px){
+    .hero .hero-layout{
+      grid-template-columns:minmax(0,1fr) clamp(200px,21vw,320px) minmax(0,1fr);
+      align-items:center; min-height:100svh; padding-top:90px; padding-bottom:16vw;
+    }
+    .hero-left{grid-column:1;}
+    .hero-tag mark{white-space:nowrap;}
+    .hero-right{grid-column:3; text-align:right;}
+    .hero-right .hero-desc{margin-left:auto;}
+    .hero-right .hero-cta{justify-content:flex-end;}
+    .hero-stage{position:absolute; inset:0; height:auto; margin:0; z-index:1;}
+    .hero-portrait{height:min(86svh, 880px);}
+    .hero-word{font-size:clamp(120px,14.5vw,250px);}
+  }
+
+  /* GIỚI THIỆU (tách khỏi hero) */
+  .about-sec{padding-top:72px;}
+  .about-grid{display:grid; grid-template-columns:1fr; gap:28px;}
+  .about-grid .stats{margin-top:0;}
+  @media(min-width:960px){.about-grid{grid-template-columns:1.15fr .85fr; align-items:center; gap:56px; padding:44px;}}
+  @keyframes patternDrift{to{background-position:34px 34px;}}
+  @media (prefers-reduced-motion:reduce){.hero::before,.hero::after{animation:none;}}
   .hero .eyebrow{margin-bottom:18px;}
   .hero h1{
     font-size:clamp(40px,7.5vw,92px);
@@ -172,6 +263,18 @@
     content:''; position:absolute; left:0; top:.55em; width:6px; height:6px; border-radius:50%; background:var(--accent);
   }
   .pillar-list li strong{color:var(--ink);}
+  .exp-sub{margin-top:56px;}
+  .exp-sub-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 18px; margin-bottom:20px;}
+  .exp-sub-head h3{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:clamp(22px,2.6vw,30px); text-transform:uppercase;}
+  .exp-sub-head p{color:var(--ink-soft); font-size:14.5px;}
+  .pillars-compact{gap:16px;}
+  .pillars-compact .pillar{padding:22px 22px 24px;}
+  .pillars-compact .pillar .icon{width:40px; height:40px; border-radius:11px; margin-bottom:14px;}
+  .pillars-compact .pillar .icon svg{width:20px; height:20px;}
+  .pillars-compact .pillar h3{font-size:16px; margin-bottom:10px;}
+  .pillars-compact .pillar-list{gap:7px;}
+  .pillars-compact .pillar-list li{font-size:13.5px;}
+  .pillars-compact .pillar .num{margin-bottom:6px;}
   .pillar .num{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:13px; color:var(--accent); margin-bottom:10px; display:block;}
 
   /* HERO + ABOUT (consolidated) */
@@ -184,6 +287,7 @@
   .intro-card .about-photo .frame{aspect-ratio:1/1;}
   .intro-card .about-copy .eyebrow{margin-bottom:10px;}
   .intro-card .about-copy p{font-size:14.5px; margin-bottom:0;}
+  .intro-card .about-copy p + p{margin-top:10px;}
   .intro-card .goal{margin-top:16px; padding:14px 16px; font-size:13.5px;}
   .intro-card .stats{grid-template-columns:repeat(2,1fr); gap:14px; margin-top:22px;}
   .intro-card .stat .num{font-size:clamp(20px,2.4vw,26px);}
@@ -221,7 +325,13 @@
   .tl-date{font-family:'Space Grotesk',sans-serif; font-weight:600; color:var(--accent); font-size:14px;}
   .tl-role{font-family:'Be Vietnam Pro',sans-serif; font-weight:900; font-size:clamp(20px,2.6vw,28px); text-transform:uppercase; margin-bottom:4px;}
   .tl-org{font-family:'Space Grotesk',sans-serif; color:var(--ink-soft); font-weight:600; margin-bottom:14px; font-size:14px;}
+  .tl-note{margin:-6px 0 14px; font-size:14px; color:var(--ink-soft); line-height:1.55;}
   .tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .tl-sub{margin-top:22px; padding:16px 0 0 18px; border-left:2px solid var(--accent); border-top:1px dashed var(--line);}
+  .tl-sub-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 14px; margin-bottom:6px;}
+  .tl-sub-role{font-family:'Be Vietnam Pro',sans-serif; font-weight:800; font-size:clamp(15px,1.7vw,18px); text-transform:uppercase;}
+  .tl-sub-date{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:13px; color:var(--accent);}
+  .tl-sub .tl-note{margin:0 0 12px;}
   .tag{
     font-size:12.5px; padding:6px 12px; border-radius:999px; border:1px solid var(--line);
     color:var(--ink-soft); background:var(--card); transition:transform .25s ease, border-color .25s ease, color .25s ease;
@@ -276,7 +386,7 @@
   /* DASHBOARD GALLERY */
   .dash-gallery{grid-column:1/-1; margin-top:10px; padding-top:24px; border-top:1px solid var(--line);}
   .dash-gallery-label{font-size:12.5px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.04em; margin-bottom:14px;}
-  .dash-gallery-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px;}
+  .dash-gallery-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px; max-width:760px;}
   .dash-thumb{
     position:relative; border:1px solid var(--line); border-radius:12px; overflow:hidden;
     padding:0; cursor:zoom-in; background:var(--bg); display:block; width:100%;
@@ -330,33 +440,68 @@
   .cert-list li:last-child{border-bottom:none;}
   .cert-list span{color:var(--ink-soft); font-size:13px;}
 
-  /* CONTACT */
+  /* CONTACT — tông sáng, đồng bộ nền kem */
   .contact{
-    position:relative; overflow:hidden;
-    background:var(--ink); color:var(--bg); border-radius:28px; margin:0 24px; padding:80px 40px; text-align:center;
+    position:relative; overflow:hidden; margin:0 auto; max-width:1180px;
+    background:var(--card); border:1px solid var(--line); border-radius:28px;
+    padding:clamp(36px,6vw,72px) clamp(22px,5vw,64px);
+    display:grid; grid-template-columns:1fr; gap:36px; align-items:center;
   }
+  @media(min-width:900px){.contact{grid-template-columns:1.1fr .9fr; gap:56px;}}
   .contact::before{
-    content:''; position:absolute; top:-260px; left:50%; transform:translateX(-50%);
-    width:640px; height:520px; background:radial-gradient(circle, rgba(228,67,40,.28), transparent 70%);
-    pointer-events:none;
+    content:''; position:absolute; right:-120px; bottom:-160px; width:420px; height:420px; border-radius:50%;
+    background:radial-gradient(circle, rgba(228,67,40,.10), transparent 68%); pointer-events:none;
   }
   .contact > *{position:relative; z-index:1;}
-  .contact h2{font-size:clamp(38px,7vw,90px); text-transform:uppercase; margin-bottom:20px;}
-  .contact h2 span{color:var(--accent);}
-  .contact p{color:#C9C6BB; max-width:480px; margin:0 auto 34px;}
-  .contact-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; max-width:760px; margin:0 auto;}
+  .contact .eyebrow{margin-bottom:14px;}
+  .contact h2{font-size:clamp(38px,5.2vw,68px); line-height:1; text-transform:uppercase; margin-bottom:22px;}
+  .contact h2 .nw{white-space:nowrap;}
+  .contact h2 em{font-style:normal; color:var(--accent); position:relative; white-space:nowrap;}
+  .contact h2 em::after{content:''; position:absolute; left:0; right:0; bottom:.06em; height:.14em; background:var(--accent); opacity:.18; border-radius:4px;}
+  .contact-lead{color:var(--ink-soft); font-size:16px; line-height:1.65; max-width:460px;}
+  .contact-lead strong{color:var(--ink);}
+  .contact-list{display:flex; flex-direction:column; border-top:1px solid var(--line);}
   .contact-card{
-    display:flex; flex-direction:column; align-items:center; gap:10px; text-align:center;
-    padding:30px 20px; border:1px solid rgba(255,255,255,.16); border-radius:16px;
-    background:rgba(255,255,255,.04); transition:transform .3s ease, border-color .3s ease, background .3s ease;
+    display:grid; grid-template-columns:44px 1fr auto; align-items:center; gap:16px;
+    padding:18px 6px; border-bottom:1px solid var(--line); color:var(--ink);
+    transition:padding .3s ease, background .3s ease;
   }
-  .contact-card:hover{transform:translateY(-6px); border-color:var(--accent); background:rgba(255,255,255,.08);}
+  .contact-card:hover{padding-left:14px; background:color-mix(in srgb, var(--accent) 5%, transparent);}
   .cc-icon{
-    width:44px; height:44px; border-radius:50%; background:var(--accent); color:#fff; flex-shrink:0;
+    width:44px; height:44px; border-radius:12px; flex-shrink:0;
     display:flex; align-items:center; justify-content:center;
+    background:var(--bg); border:1px solid var(--line); color:var(--ink);
+    transition:background .3s ease, color .3s ease, border-color .3s ease;
   }
-  .cc-label{font-family:'Space Grotesk',sans-serif; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:#a8a59c;}
-  .cc-value{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:14.5px; word-break:break-word; color:var(--bg);}
+  .contact-card:hover .cc-icon{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .cc-text{min-width:0;}
+  .cc-label{font-family:'Space Grotesk',sans-serif; font-size:11.5px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft);}
+  .cc-value{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:clamp(14px,1.5vw,16.5px); color:var(--ink); overflow-wrap:anywhere;}
+  .cc-arrow{color:var(--ink-soft); transition:transform .3s ease, color .3s ease;}
+  .contact-card:hover .cc-arrow{transform:translate(3px,-3px); color:var(--accent);}
+  .contact-note{margin-top:16px; font-size:13px; color:var(--ink-soft); display:flex; align-items:center; gap:8px;}
+  /* phối màu chữ + shape */
+  .contact h2 .dot{color:var(--accent);}
+  .contact-lead .hl{background:linear-gradient(transparent 58%, rgba(228,67,40,.22) 58%); padding:0 2px;}
+  .contact-lead .ink-em{font-style:normal; color:var(--ink); font-weight:600;}
+  .contact-card{--tone:var(--accent);}
+  .cc-mail{--tone:#E44328;} .cc-phone{--tone:#C9862B;} .cc-li{--tone:#2F6DB5;}
+  .contact-card .cc-icon{background:color-mix(in srgb, var(--tone) 12%, var(--card)); border-color:color-mix(in srgb, var(--tone) 28%, var(--line)); color:var(--tone);}
+  .contact-card .cc-label{color:var(--tone);}
+  .contact-card:hover{background:color-mix(in srgb, var(--tone) 6%, transparent);}
+  .contact-card:hover .cc-icon{background:var(--tone); border-color:var(--tone); color:#fff;}
+  .contact-card:hover .cc-arrow{color:var(--tone);}
+  .live{width:8px; height:8px; border-radius:50%; background:#3D9A5B; box-shadow:0 0 0 0 rgba(61,154,91,.5); animation:livePulse 2.2s ease-out infinite; flex-shrink:0;}
+  @keyframes livePulse{70%{box-shadow:0 0 0 8px rgba(61,154,91,0);} 100%{box-shadow:0 0 0 0 rgba(61,154,91,0);}}
+  .contact::after{
+    content:''; position:absolute; top:-70px; right:-70px; width:220px; height:220px; border-radius:50%;
+    border:1.5px dashed rgba(228,67,40,.28); pointer-events:none;
+  }
+  .contact-shape{position:absolute; left:-30px; bottom:-30px; width:150px; height:150px; pointer-events:none; z-index:0;
+    background-image:radial-gradient(rgba(201,134,43,.45) 1.4px, transparent 1.6px); background-size:14px 14px;
+    -webkit-mask-image:radial-gradient(circle, #000 30%, transparent 72%); mask-image:radial-gradient(circle, #000 30%, transparent 72%);}
+  @media (prefers-reduced-motion:reduce){.live{animation:none;}}
+  @media(max-width:480px){.contact-card{grid-template-columns:40px 1fr; gap:12px;} .cc-icon{width:40px; height:40px;} .cc-arrow{display:none;} .cc-value{font-size:13px;} .contact{padding:32px 18px;}}
 
   footer{padding:40px 24px 30px;}
   .foot-bar{
@@ -383,6 +528,74 @@
   body.figs-hidden .pstat .val{filter:blur(5px) url(#grainBig);}
   body.figs-hidden .inline-stat-val{display:inline-block; filter:blur(5px) url(#grainMid);}
   body.figs-hidden .fig{display:inline-block; filter:blur(3px) url(#grainFine);}
+
+  /* ===== PATTERN CHÌM CHO MỌI SECTION ===== */
+  @property --spot-c{syntax:'<color>'; inherits:true; initial-value:#E44328;}
+  main > section:not(.hero){
+    position:relative; isolation:isolate;
+    --pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M17 13v8M13 17h8' stroke='%23000' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    transition:--spot-c .7s ease;
+  }
+  #skills{--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Ccircle cx='17' cy='17' r='1.6'/%3E%3C/svg%3E");}
+  #projects{--pat:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34'%3E%3Cpath d='M14 14l6 6M20 14l-6 6' stroke='%23000' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");}
+  main > section:not(.hero)::before, main > section:not(.hero)::after{
+    content:''; position:absolute; inset:0; z-index:-1; pointer-events:none;
+    -webkit-mask-repeat:repeat, no-repeat; mask-repeat:repeat, no-repeat;
+    -webkit-mask-size:34px 34px, 100% 100%; mask-size:34px 34px, 100% 100%;
+    -webkit-mask-composite:source-in; mask-composite:intersect;
+    animation:patDriftAll 60s linear infinite;
+  }
+  main > section:not(.hero)::before{
+    background:var(--ink); opacity:.075;
+    -webkit-mask-image:var(--pat), linear-gradient(transparent, #000 14%, #000 86%, transparent);
+            mask-image:var(--pat), linear-gradient(transparent, #000 14%, #000 86%, transparent);
+  }
+  main > section:not(.hero)::after{
+    background:var(--spot-c); opacity:0; transition:opacity .5s ease;
+    -webkit-mask-image:var(--pat), radial-gradient(circle 210px at var(--mx,50%) var(--my,50%), rgba(0,0,0,.7), transparent 80%);
+            mask-image:var(--pat), radial-gradient(circle 210px at var(--mx,50%) var(--my,50%), rgba(0,0,0,.7), transparent 80%);
+  }
+  main > section.spot:not(.hero)::after{opacity:1;}
+  @keyframes patDriftAll{to{-webkit-mask-position:34px 34px, 0 0; mask-position:34px 34px, 0 0;}}
+  @media (prefers-reduced-motion:reduce){main > section::before, main > section::after{animation:none;}}
+
+  /* ===== MÀU BRAND (đã phối với nền kem của site) ===== */
+  [data-brand="phela"]{--brand:#833C0B; --brand-2:#B8946A;}      /* Phê La: nâu thương hiệu + be (#D8BE9E đậm lên cho đủ tương phản) */
+  [data-brand="highlands"]{--brand:#A8262C; --brand-2:#6B4A2E;}  /* Highlands: đỏ thương hiệu + nâu cà phê */
+  [data-brand="tvp"]{--brand:#3D7F34; --brand-2:#D99A1E;}        /* Trí Việt Phát: xanh lá + vàng mù tạt (bao bì Má Bảy) */
+  [data-brand]{--brand-wash:color-mix(in srgb, var(--brand) 6%, var(--card));}
+  .tl-item[data-brand]{transition:background .4s ease, transform .3s ease, box-shadow .4s ease;}
+  .tl-item[data-brand] .tl-date, .tl-item[data-brand] .tl-org{color:var(--brand); transition:color .4s ease;}
+  .tl-item[data-brand]:hover{background:var(--brand-wash); box-shadow:inset 3px 0 0 var(--brand);}
+  .tl-item[data-brand]:hover .tl-date{color:var(--brand);}
+  .tl-item[data-brand] .tag:hover{border-color:var(--brand); color:var(--brand);}
+  .tl-item[data-brand] .tl-sub{border-left-color:var(--brand-2);}
+  .tl-item[data-brand] .tl-sub-date{color:var(--brand-2);}
+  .project[data-brand]{box-shadow:inset 0 4px 0 var(--brand); transition:border-color .4s ease, background .4s ease;}
+  .project[data-brand]:hover{border-color:color-mix(in srgb, var(--brand) 35%, var(--line));}
+  [data-brand] .project-head .num{color:var(--brand);}
+  [data-brand] .pill{background:var(--brand); color:#FBF8F0;}
+  [data-brand] .pill:nth-child(even){background:color-mix(in srgb, var(--brand) 78%, var(--ink));}
+  [data-brand] .project-col h4{color:var(--brand);}
+  [data-brand] .pstat{background:var(--brand-wash); border-color:color-mix(in srgb, var(--brand) 18%, var(--line));}
+  [data-brand] .pstat .val .plus, [data-brand] .inline-stat-val .plus{color:var(--brand);}
+  [data-brand] .pstat .val{color:var(--brand);}
+  [data-brand] .project-col li::marker{color:var(--brand-2);}
+  [data-brand] .mini-case{transition:border-color .3s ease;}
+  [data-brand] .mini-case:hover{border-color:var(--brand);}
+  [data-brand] .bars i.hi{background:var(--brand);}
+  .brand-block{margin-top:8px;}
+  .hy-gallery{grid-column:1/-1; display:grid; gap:26px; padding-top:6px; border-top:1px dashed var(--line);}
+  .hy-group .dash-gallery-label{margin:18px 0 12px;}
+  .hy-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:10px;}
+  @media(min-width:760px){.hy-grid{grid-template-columns:repeat(4,1fr);} .hy-grid-3{grid-template-columns:repeat(3,1fr);} .hy-grid-3 .hy-thumb{aspect-ratio:16/9;} .hy-grid .hy-thumb:not(.hy-grid-3 *){aspect-ratio:4/3;}}
+  .hy-thumb{position:relative; aspect-ratio:1/1; cursor:zoom-in;}
+  @media(max-width:759px){.hy-grid-3 .hy-thumb:last-child{grid-column:1/-1; aspect-ratio:16/10;}}
+  .hy-thumb img{width:100%; height:100%; object-fit:cover;}
+  .hy-thumb:hover img{transform:scale(1.05);}
+  .hy-cap{position:absolute; left:0; right:0; bottom:0; padding:22px 10px 8px; font-size:11.5px; font-weight:600; text-align:left;
+    color:#FBF8F0; background:linear-gradient(transparent, rgba(30,20,10,.72)); font-family:'Space Grotesk',sans-serif;}
+  [data-brand] .hy-thumb:hover{border-color:var(--brand);}
 </style>
 </head>
 <body>
@@ -441,59 +654,128 @@
 
 <main id="top">
   <section class="hero" id="heroSection">
-    <div class="wrap hero-grid">
+    <div class="wrap hero-layout">
       <div class="hero-left">
         <p class="eyebrow">Portfolio 2026 · TP. Hồ Chí Minh</p>
         <h1>
           <span class="word"><span>NGUYỄN</span></span>
           <span class="word"><span>PHÚ</span></span>
-          <span class="word accent"><span>CƯỜNG</span></span>
+          <span class="word"><span>CƯỜNG</span></span>
         </h1>
-        <div class="hero-sub">
-          <p class="hero-tagline">Operations · Trade Marketing · Data Analytics</p>
-          <p class="hero-desc">Gần 3 năm "lăn xả" trong vận hành chuỗi F&amp;B tại Highlands Coffee — biến dữ liệu vận hành thành hành động thương mại, và hành động thành kết quả đo đếm được.</p>
-        </div>
+        <p class="hero-tag"><mark>Trade Marketing · Operations · Data Analytics</mark></p>
+        <p class="hero-school">Cử nhân Marketing<br>Đại học Tài Chính - Marketing (UFM)</p>
+      </div>
+
+      <div class="hero-right">
+        <blockquote class="hero-quote">
+          <span class="q-mark" aria-hidden="true">“</span>
+          <span class="q-big">Nếu không <em>thử</em>,</span>
+          <span class="q-small">sẽ không biết bản thân làm được những gì!</span>
+          <span class="q-big">Nếu không <em>làm</em>,</span>
+          <span class="q-small">sẽ mãi là <mark>bạn của ngày hôm qua</mark>.</span>
+        </blockquote>
+        <p class="hero-desc">Hơn 3 năm trong ngành F&amp;B — từ vận hành chuỗi Highlands Coffee đến Trade Marketing tại Phê La: biến dữ liệu thành hành động, và hành động thành kết quả đo đếm được.</p>
         <div class="hero-cta">
           <a href="#projects" class="btn solid">Xem dự án nổi bật</a>
           <a href="#contact" class="btn accent">Liên hệ</a>
         </div>
       </div>
+    </div>
 
-      <div class="intro-card" id="about">
-        <div class="about-photo" data-reveal>
-          <div class="frame"><img src="assets/Profile.jpg" alt="Chân dung Nguyễn Phú Cường"></div>
-        </div>
+    <div class="hero-stage" aria-hidden="true">
+      <img class="hero-portrait" src="assets/profile-cutout.png" alt="">
+      <div class="hero-word">PORTFOLIO</div>
+    </div>
+  </section>
+
+  <section class="about-sec" id="about">
+    <div class="wrap">
+      <div class="intro-card about-grid">
         <div class="about-copy" data-reveal>
           <p class="eyebrow">Giới thiệu bản thân</p>
-          <p>Mình là Phú Cường — gần 3 năm "lăn xả" trong ngành F&amp;B, từ nhân viên lên Store Manager của Highlands Coffee. Thế mạnh của mình nằm ở điểm giao giữa vận hành thương mại, dữ liệu và marketing: biến số liệu thành hành động, hành động thành kết quả đo đếm được.</p>
-          <div class="goal">Đang tìm vị trí: <strong>Trade Marketing / Commercial Operations / Retail Operations</strong> tại văn phòng.</div>
-          <div class="stats">
-            <div class="stat" data-reveal><div class="num" data-count="35" data-suffix="%">0</div><div class="label">Tăng doanh thu</div></div>
-            <div class="stat" data-reveal><div class="num"><span data-count="-14.8" data-decimals="1">0</span>→<span data-count="-7.8" data-decimals="1">0</span>%</div><div class="label">EBITDA cải thiện</div></div>
-            <div class="stat" data-reveal><div class="num" data-count="16">0</div><div class="label">Cửa hàng hỗ trợ</div></div>
-            <div class="stat" data-reveal><div class="num" data-count="22" data-suffix="%">0</div><div class="label">Sell-out tăng</div></div>
-          </div>
+          <p>Với hơn 3 năm "lăn xả" trong ngành F&amp;B: từ nhân viên part-time lên Store Manager của <strong>Highlands Coffee</strong>, rồi chuyển sang Trade Marketing tại <strong>Phê La</strong>. Hiện là Trade Marketing Executive, phụ trách POSM, activation và NSO cho <strong>hơn 80 cửa hàng</strong> toàn quốc, trực tiếp triển khai decoration và activation của các campaign Phê La Có Hỷ, Phê La Len.</p>
+          <p>Đi lên từ cửa hàng nên mình hiểu điểm bán cần gì. Thế mạnh của mình nằm ở điểm giao giữa vận hành thương mại, dữ liệu và marketing: biến số liệu thành hành động, hành động thành kết quả đo đếm được.</p>
+          <div class="goal">Định hướng: phát triển chuyên sâu <strong>Trade Marketing ngành F&amp;B / FMCG</strong>.</div>
+        </div>
+        <div class="stats">
+            <div class="stat" data-reveal><div class="num" data-count="80" data-suffix="+">0</div><div class="label">Cửa hàng Phê La phụ trách POSM</div></div>
+            <div class="stat" data-reveal><div class="num" data-count="42">0</div><div class="label">Cửa hàng decor campaign Phê La Có Hỷ</div></div>
+            <div class="stat" data-reveal><div class="num" data-count="2.79" data-decimals="2" data-suffix="M">0</div><div class="label">Lượt xem TikTok campaign Phê La Có Hỷ</div></div>
+            <div class="stat" data-reveal><div class="num"><span data-count="-14.8" data-decimals="1">0</span>→<span data-count="-7.8" data-decimals="1">0</span>%</div><div class="label">EBITDA cửa hàng Highlands</div></div>
         </div>
       </div>
     </div>
-    <div class="scroll-cue"><span class="dot"></span> Cuộn xuống</div>
   </section>
 
   <div class="marquee">
     <div class="marquee-track">
-      <span>Operations</span><span>Trade Marketing</span><span>Data Analytics</span><span>P&amp;L Management</span><span>Power BI</span>
-      <span>Operations</span><span>Trade Marketing</span><span>Data Analytics</span><span>P&amp;L Management</span><span>Power BI</span>
+      <span>Trade Marketing</span><span>POSM</span><span>Activation</span><span>NSO</span><span>Campaign</span><span>Operations</span><span>Data Analytics</span><span>Power BI</span>
+      <span>Trade Marketing</span><span>POSM</span><span>Activation</span><span>NSO</span><span>Campaign</span><span>Operations</span><span>Data Analytics</span><span>Power BI</span>
     </div>
   </div>
 
-  <section id="pillarsSection">
+  <section id="experience">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <p class="eyebrow">Ba năng lực cốt lõi</p>
-        <h2>Tôi làm được gì?</h2>
-        <p>Điểm giao giữa vận hành thương mại, dữ liệu và marketing — mỗi năng lực đều gắn với kết quả thực tế đã tạo ra.</p>
+        <p class="eyebrow">Quá trình làm việc</p>
+        <h2>Kinh nghiệm</h2>
       </div>
-      <div class="pillars">
+      <div class="timeline">
+        <div class="tl-item" data-brand="phela" data-reveal>
+          <div class="tl-date">08/2026 — nay</div>
+          <div>
+            <div class="tl-role">Trade Marketing Executive</div>
+            <div class="tl-org">Phê La</div>
+            <p class="tl-note">Trade Marketing Officer (08–09/2026) → thăng chức Executive từ 10/2026 sau campaign Phê La Có Hỷ 2026.</p>
+            <div class="tags">
+              <span class="tag">Campaign Decoration</span><span class="tag">In-store Activation</span>
+              <span class="tag">POSM Management (80+ cửa hàng)</span><span class="tag">NSO</span>
+              <span class="tag">Campaign Planning &amp; Leadtime</span><span class="tag">Báo cáo CEO &amp; Chairman</span>
+              <span class="tag">Power BI</span><span class="tag">B2B Voucher</span>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item" data-brand="highlands" data-reveal>
+          <div class="tl-date">10/2023 — 06/2026</div>
+          <div>
+            <div class="tl-role">Store Manager</div>
+            <div class="tl-org">Highlands Coffee</div>
+            <div class="tags">
+              <span class="tag">P&amp;L Management</span><span class="tag">Store Operations</span>
+              <span class="tag">Revenue Growth</span><span class="tag">EBITDA Improvement</span>
+              <span class="tag">Team Leadership &amp; Training</span><span class="tag">Sales Target Allocation</span>
+              <span class="tag">KPI Management</span>
+            </div>
+            <div class="tl-sub">
+              <div class="tl-sub-head"><span class="tl-sub-role">Project: District Manager Support</span><span class="tl-sub-date">01/2025 — 06/2026</span></div>
+              <p class="tl-note">Song song vai trò Store Manager, hỗ trợ quản lý khu vực theo dõi hiệu suất 16–18 cửa hàng.</p>
+              <div class="tags">
+              <span class="tag">Multi-store Performance Tracking</span><span class="tag">Power BI Dashboard</span>
+              <span class="tag">Local Store Marketing</span><span class="tag">AOV Growth</span>
+              <span class="tag">Operational Reporting</span><span class="tag">Performance Benchmarking</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="tl-item" data-brand="tvp" data-reveal>
+          <div class="tl-date">09/2025 — 11/2025</div>
+          <div>
+            <div class="tl-role">Trade Marketing — Intern</div>
+            <div class="tl-org">Trí Việt Phát Foods</div>
+            <div class="tags">
+              <span class="tag">Modern Trade (MT)</span><span class="tag">Sell-out Growth</span>
+              <span class="tag">POSM &amp; Merchandising</span><span class="tag">Trade Activation</span>
+              <span class="tag">Sampling</span><span class="tag">Competitor Analysis</span><span class="tag">Sales Reporting</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-sub" id="capabilities">
+        <div class="exp-sub-head" data-reveal>
+          <h3>Năng lực</h3>
+          <p>Những điều bản thân đúc kết được từ trải nghiệm khi làm việc.</p>
+        </div>
+      <div class="pillars pillars-compact">
         <a class="pillar" href="#project-03" data-reveal>
           <span class="num">01</span>
           <div class="icon">
@@ -507,16 +789,16 @@
             <li>Sale-Driven — Doanh thu gộp <strong class="fig">+21%</strong>, EBITDA cải thiện từ <span class="fig">-14,8%</span> lên <span class="fig">-7,8%</span>.</li>
           </ul>
         </a>
-        <a class="pillar" href="#project-02" data-reveal>
+        <a class="pillar" href="#project-phela" data-reveal>
           <span class="num">02</span>
           <div class="icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
           </div>
           <h3>Trade Marketing</h3>
           <ul class="pillar-list">
-            <li>Quản lý 3 brand và danh mục sản phẩm hơn 30 SKUs.</li>
-            <li>Triển khai hoạt động tại các kênh MT: Co.op Mart/Extra, Winmart, Emart, Lotte Mart, GO!,...</li>
-            <li>Quản trị POSM, thực thi khuyến mãi thúc đẩy sell-out <strong class="fig">~22%</strong>.</li>
+            <li>Phê La: POSM offline, digital, always-on cho <strong>hơn 80 cửa hàng</strong>; NSO trọn gói cho cửa hàng mới.</li>
+            <li>Campaign mùa: decoration Phê La Có Hỷ tại <strong class="fig">42</strong> cửa hàng (~50% ngân sách), Phê La Len tại <strong class="fig">12</strong> cửa hàng.</li>
+            <li>Kênh MT (FMCG): 3 brand, hơn 30 SKUs, khuyến mãi thúc đẩy sell-out <strong class="fig">~22%</strong>.</li>
           </ul>
         </a>
         <a class="pillar" href="#project-01" data-reveal>
@@ -526,59 +808,12 @@
           </div>
           <h3>Data Analytics</h3>
           <ul class="pillar-list">
-            <li>Xây dựng hệ thống dashboard Power BI theo dõi hoạt động chi tiết của khu vực.</li>
-            <li>Các chỉ số theo dõi: P&amp;L, Rev, Traffic, AOV, Conversion rate, Redeemption.</li>
-            <li>Với khu vực khoảng <strong>16–18 cửa hàng</strong> (tùy thời điểm).</li>
+            <li>Phê La: báo cáo weekly/monthly cho CEO &amp; Chairman; kết nối dữ liệu Vận hành – Marketing – IT thành dashboard Power BI.</li>
+            <li>Đo hiệu quả activation: voucher, photobooth, đêm nhạc.</li>
+            <li>Highlands: dashboard theo dõi <strong>16–18 cửa hàng</strong> — P&amp;L, Rev, Traffic, AOV, Conversion rate, Redemption.</li>
           </ul>
         </a>
       </div>
-    </div>
-  </section>
-
-  <section id="experience">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <p class="eyebrow">Quá trình làm việc</p>
-        <h2>Kinh nghiệm</h2>
-      </div>
-      <div class="timeline">
-        <div class="tl-item" data-reveal>
-          <div class="tl-date">10/2023 — 06/2026</div>
-          <div>
-            <div class="tl-role">Store Manager</div>
-            <div class="tl-org">Highlands Coffee</div>
-            <div class="tags">
-              <span class="tag">P&amp;L Management</span><span class="tag">Store Operations</span>
-              <span class="tag">Revenue Growth</span><span class="tag">EBITDA Improvement</span>
-              <span class="tag">Team Leadership &amp; Training</span><span class="tag">Sales Target Allocation</span>
-              <span class="tag">KPI Management</span>
-            </div>
-          </div>
-        </div>
-        <div class="tl-item" data-reveal>
-          <div class="tl-date">01/2025 — 06/2026</div>
-          <div>
-            <div class="tl-role">District Manager Support</div>
-            <div class="tl-org">Highlands Coffee</div>
-            <div class="tags">
-              <span class="tag">Multi-store Performance Tracking</span><span class="tag">Power BI Dashboard</span>
-              <span class="tag">Local Store Marketing</span><span class="tag">AOV Growth</span>
-              <span class="tag">Operational Reporting</span><span class="tag">Performance Benchmarking</span>
-            </div>
-          </div>
-        </div>
-        <div class="tl-item" data-reveal>
-          <div class="tl-date">09/2025 — 11/2025</div>
-          <div>
-            <div class="tl-role">Trade Marketing — Intern</div>
-            <div class="tl-org">Trí Việt Phát Foods</div>
-            <div class="tags">
-              <span class="tag">Modern Trade (MT)</span><span class="tag">Sell-out Growth</span>
-              <span class="tag">POSM &amp; Merchandising</span><span class="tag">Trade Activation</span>
-              <span class="tag">Sampling</span><span class="tag">Competitor Analysis</span><span class="tag">Sales Reporting</span>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -588,13 +823,65 @@
       <div class="section-head" data-reveal>
         <p class="eyebrow">Case study</p>
         <h2>Dự án nổi bật</h2>
-        <p>Ba dự án minh chứng năng lực xuyên suốt: thu thập &amp; phân tích dữ liệu, triển khai trade marketing tại điểm bán, và vận hành cửa hàng.</p>
+        <p>Bốn dự án minh chứng năng lực xuyên suốt: triển khai campaign mùa cho chuỗi F&amp;B, thu thập &amp; phân tích dữ liệu, trade marketing tại điểm bán, và vận hành cửa hàng.</p>
       </div>
 
-      <article class="project" id="project-01" data-reveal>
+      <article class="project" id="project-phela" data-brand="phela" data-reveal>
         <div class="project-head">
           <div>
-            <span class="num">01 / Data Analytics · Operations</span>
+            <span class="num">01 / Trade Marketing · Phê La</span>
+            <h3>Campaign Phê La Có Hỷ &amp; Phê La Len 2026</h3>
+          </div>
+          <div class="pill-row"><span class="pill">Decoration</span><span class="pill">Activation</span><span class="pill">POSM</span><span class="pill">Leadtime</span></div>
+        </div>
+        <div class="project-body">
+          <div class="project-col">
+            <h4>Bối cảnh</h4>
+            <p>Phê La vận hành hơn 80 cửa hàng trên toàn quốc. Mỗi campaign mùa cần decoration, POSM offline/digital và activation lên đồng bộ ở nhiều thành phố, trong leadtime ngắn và ngân sách lớn.</p>
+            <h4>Thực hiện</h4>
+            <ul>
+              <li>Xây dựng kế hoạch và leadtime cho từng campaign: POSM offline, digital, activation tại cửa hàng.</li>
+              <li><strong>Phê La Có Hỷ 2026:</strong> phụ trách chính hạng mục decoration (chiếm ~50% ngân sách campaign) tại 42 cửa hàng và roadshow rước dâu xuyên 3 miền — hai điểm nhấn tạo hiệu ứng lớn cho campaign.</li>
+              <li><strong>Phê La Len 2026:</strong> phụ trách decoration (chiếm ~40% ngân sách) tại 12 cửa hàng; tổ chức workshop Đan Len và tặng quà đan len mini, tăng tương tác ngay tại cửa hàng.</li>
+              <li>Trong và sau campaign: audit POSM hằng ngày, đo hiệu quả voucher, photobooth, đêm nhạc; báo cáo weekly/monthly cho CEO &amp; Chairman.</li>
+            </ul>
+            <h4>Kết quả</h4>
+            <ul>
+              <li>Phê La Có Hỷ: <strong>90 video TikTok</strong>, <strong>2,79 triệu lượt xem</strong> cho campaign.</li>
+              <li>Được thăng chức từ Trade Marketing Officer lên Executive sau campaign Phê La Có Hỷ.</li>
+            </ul>
+          </div>
+          <div class="project-stats">
+            <div class="pstat"><div class="val"><span data-count="42">0</span></div><div class="desc">Cửa hàng decor Phê La Có Hỷ (~50% ngân sách)</div></div>
+            <div class="pstat"><div class="val"><span data-count="12">0</span></div><div class="desc">Cửa hàng decor Phê La Len (~40% ngân sách)</div></div>
+            <div class="pstat"><div class="val"><span data-count="2.79" data-decimals="2" data-suffix="M">0</span></div><div class="desc">Lượt xem · 90 video TikTok Phê La Có Hỷ</div></div>
+          </div>
+          <div class="hy-gallery">
+            <div class="hy-group">
+              <p class="dash-gallery-label">Decoration cổng cưới Phê La Có Hỷ — ảnh thực tế tại cửa hàng</p>
+              <div class="hy-grid">
+                <button class="dash-thumb hy-thumb" data-full="assets/campaign/phela-hy-decor-hcm-c10.webp"><img loading="lazy" src="assets/campaign/phela-hy-decor-hcm-c10.webp" alt="Cổng cưới Phê La Có Hỷ tại 115 Trương Định, TP.HCM"><span class="hy-cap">TP.HCM · Trương Định</span></button>
+                <button class="dash-thumb hy-thumb" data-full="assets/campaign/phela-hy-decor-hn-r1.webp"><img loading="lazy" src="assets/campaign/phela-hy-decor-hn-r1.webp" alt="Decor Phê La Có Hỷ tại 24 Hàng Cót, Hà Nội"><span class="hy-cap">Hà Nội · Hàng Cót</span></button>
+                <button class="dash-thumb hy-thumb" data-full="assets/campaign/phela-hy-decor-hp-r9.webp"><img loading="lazy" src="assets/campaign/phela-hy-decor-hp-r9.webp" alt="Decor Phê La Có Hỷ tại Lương Khánh Thiện, Hải Phòng"><span class="hy-cap">Hải Phòng · Lương Khánh Thiện</span></button>
+                <button class="dash-thumb hy-thumb" data-full="assets/campaign/phela-hy-decor-vt-r24.webp"><img loading="lazy" src="assets/campaign/phela-hy-decor-vt-r24.webp" alt="Decor Phê La Có Hỷ tại 2 Lê Lợi, Vũng Tàu"><span class="hy-cap">Vũng Tàu · Lê Lợi</span></button>
+              </div>
+            </div>
+            <div class="hy-group">
+              <p class="dash-gallery-label">Roadshow rước dâu xuyên 3 miền</p>
+              <div class="hy-grid hy-grid-3">
+                <button class="dash-thumb hy-thumb" data-full="assets/campaign/phela-hy-roadshow-long-xuyen.webp"><img loading="lazy" src="assets/campaign/phela-hy-roadshow-long-xuyen.webp" alt="Roadshow rước dâu Phê La Có Hỷ tại Long Xuyên"><span class="hy-cap">Long Xuyên · 03/10</span></button>
+                <button class="dash-thumb hy-thumb" data-full="assets/campaign/phela-hy-roadshow-hcm.webp"><img loading="lazy" src="assets/campaign/phela-hy-roadshow-hcm.webp" alt="Đoàn rước dâu Phê La Có Hỷ trên phố TP.HCM"><span class="hy-cap">TP.HCM · 04/10</span></button>
+                <button class="dash-thumb hy-thumb" data-full="assets/campaign/phela-hy-roadshow-ha-noi.webp"><img loading="lazy" src="assets/campaign/phela-hy-roadshow-ha-noi.webp" alt="Roadshow rước dâu Phê La Có Hỷ tại Hà Nội"><span class="hy-cap">Hà Nội · 10/10</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="project" id="project-01" data-brand="highlands" data-reveal>
+        <div class="project-head">
+          <div>
+            <span class="num">02 / Data Analytics · Operations</span>
             <h3>Multi-store Performance Tracking</h3>
           </div>
           <div class="pill-row"><span class="pill">Power BI</span><span class="pill">Google Sheets</span><span class="pill">Excel</span></div>
@@ -647,10 +934,10 @@
         </div>
       </article>
 
-      <article class="project" id="project-02" data-reveal>
+      <article class="project" id="project-02" data-brand="tvp" data-reveal>
         <div class="project-head">
           <div>
-            <span class="num">02 / Trade Marketing</span>
+            <span class="num">03 / Trade Marketing · FMCG &amp; Highlands</span>
             <h3>Trade Activation &amp; Sell-out Growth</h3>
           </div>
           <div class="pill-row"><span class="pill">Modern Trade</span><span class="pill">POSM</span><span class="pill">Sampling</span></div>
@@ -685,8 +972,9 @@
                 </div>
               </div>
             </div>
+            <div class="brand-block" data-brand="highlands">
             <h4>B — Local Store Marketing cấp cụm (Highlands Coffee, 16 cửa hàng)</h4>
-            <p>Đóng góp, xây dựng in-store marketing proposal theo đặc thù từng địa bàn, triển khai đồng loạt dựa trên dữ liệu benchmark từ dashboard dự án 01. Đề xuất 3 CTKM tăng giá trị &amp; tần suất mua hàng:</p>
+            <p>Đóng góp, xây dựng in-store marketing proposal theo đặc thù từng địa bàn, triển khai đồng loạt dựa trên dữ liệu benchmark từ dashboard dự án 02. Đề xuất 3 CTKM tăng giá trị &amp; tần suất mua hàng:</p>
             <ul>
               <li><strong>Free Topping</strong> khi mua nước size L — tăng giá trị mua thêm.</li>
               <li><strong>Free Cake 29K</strong> khi hóa đơn đạt 139K — tăng giá trị mua thêm.</li>
@@ -696,14 +984,15 @@
               <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="12.5" data-decimals="1">0</span>%</div><div class="desc">Doanh thu cụm (Q1/2026)</div></div>
               <div class="pstat"><div class="val"><span class="plus">+</span><span data-count="20">0</span>%</div><div class="desc">AOV</div></div>
             </div>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="project" id="project-03" data-reveal>
+      <article class="project" id="project-03" data-brand="highlands" data-reveal>
         <div class="project-head">
           <div>
-            <span class="num">03 / Operations</span>
+            <span class="num">04 / Operations</span>
             <h3>Store Operations &amp; Sales Growth</h3>
           </div>
           <div class="pill-row"><span class="pill">P&amp;L</span><span class="pill">Team Training</span><span class="pill">3P Delivery</span></div>
@@ -766,27 +1055,34 @@
   </section>
 
   <section id="contact">
+    <div class="wrap">
     <div class="contact" data-reveal>
-      <p class="eyebrow" style="color:var(--accent);">Sẵn sàng trao đổi</p>
-      <h2>Cùng <span>kết nối</span> nhé</h2>
-      <p>Đang tìm kiếm cơ hội ở vị trí Trade Marketing / Commercial Operations / Retail Operations. Rất mong được trao đổi thêm cùng bạn.</p>
-      <div class="contact-grid">
-        <a class="contact-card" href="mailto:nguyenphucuong1104@gmail.com">
-          <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg></div>
-          <div class="cc-label">Email</div>
-          <div class="cc-value">nguyenphucuong1104@gmail.com</div>
-        </a>
-        <a class="contact-card" href="tel:0947830061">
-          <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
-          <div class="cc-label">Điện thoại</div>
-          <div class="cc-value">0947.830.061</div>
-        </a>
-        <a class="contact-card" href="https://www.linkedin.com/in/ngnphcng1104/" target="_blank" rel="noopener">
-          <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-          <div class="cc-label">LinkedIn</div>
-          <div class="cc-value">Xem hồ sơ</div>
-        </a>
+      <span class="contact-shape" aria-hidden="true"></span>
+      <div>
+        <h2>Liên hệ<span class="dot">.</span></h2>
+        <p class="contact-lead">Mình đang theo đuổi con đường <strong class="hl">Trade Marketing ngành F&amp;B / FMCG</strong>. Nếu bạn cần một người <em class="ink-em">hiểu điểm bán từ bên trong</em> và <em class="ink-em">làm việc bằng số liệu</em>, rất mong có dịp trao đổi thêm cùng bạn.</p>
       </div>
+      <div>
+        <div class="contact-list">
+          <a class="contact-card cc-mail" href="mailto:nguyenphucuong1104@gmail.com">
+            <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 6 8 7 8-7"/></svg></div>
+            <div class="cc-text"><div class="cc-label">Email</div><div class="cc-value">nguyenphucuong1104@gmail.com</div></div>
+            <svg class="cc-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="contact-card cc-phone" href="tel:0947830061">
+            <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div class="cc-text"><div class="cc-label">Điện thoại</div><div class="cc-value">0947 830 061</div></div>
+            <svg class="cc-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+          <a class="contact-card cc-li" href="https://www.linkedin.com/in/ngnphcng1104/" target="_blank" rel="noopener">
+            <div class="cc-icon"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+            <div class="cc-text"><div class="cc-label">LinkedIn</div><div class="cc-value">in/ngnphcng1104</div></div>
+            <svg class="cc-arrow" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </a>
+        </div>
+        <p class="contact-note"><span class="live"></span>Đang làm việc tại TP. Hồ Chí Minh</p>
+      </div>
+    </div>
     </div>
   </section>
 </main>
@@ -803,7 +1099,7 @@
     <span>Portfolio 2026 — Nguyễn Phú Cường</span>
     <a href="mailto:nguyenphucuong1104@gmail.com">nguyenphucuong1104@gmail.com</a>
     <span>Thành phố Hồ Chí Minh</span>
-    <span>"Leading people on the floor — guided by data."</span>
+    <span>"Nếu không làm, sẽ mãi là bạn của ngày hôm qua."</span>
   </div>
 </footer>
 
@@ -812,6 +1108,36 @@
   window.addEventListener('DOMContentLoaded', ()=>{
     setTimeout(()=>document.getElementById('heroSection').classList.add('loaded'), 200);
   });
+
+  // pattern mọi section: lớp màu hiện quanh con trỏ, đổi mượt sang màu brand khi rê qua khối brand
+  (()=>{
+    if (!matchMedia('(hover:hover)').matches) return;
+    const accent = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#E44328';
+    document.querySelectorAll('main > section:not(.hero)').forEach(sec=>{
+      sec.addEventListener('pointermove', e=>{
+        const r = sec.getBoundingClientRect();
+        sec.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        sec.style.setProperty('--my', (e.clientY - r.top) + 'px');
+        const b = e.target.closest('[data-brand]');
+        sec.style.setProperty('--spot-c', b ? getComputedStyle(b).getPropertyValue('--brand').trim() : accent);
+        sec.classList.add('spot');
+      });
+      sec.addEventListener('pointerleave', ()=>sec.classList.remove('spot'));
+    });
+  })();
+
+  // hero pattern: lớp cam hiện quanh con trỏ chuột
+  (()=>{
+    const hero = document.getElementById('heroSection');
+    if (!hero || !matchMedia('(hover:hover)').matches) return;
+    hero.addEventListener('pointermove', e=>{
+      const r = hero.getBoundingClientRect();
+      hero.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      hero.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      hero.classList.add('spot');
+    });
+    hero.addEventListener('pointerleave', ()=>hero.classList.remove('spot'));
+  })();
 
   // nav scroll state
   const navEl = document.getElementById('siteNav');
